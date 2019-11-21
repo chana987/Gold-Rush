@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Gold Rush</title>
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <div class="player1">
+            <p class="name">Player 1: <span class="score">0</span></p>
+        </div>
+        <h3 class="heading">Gold Rush</h3>
+        <div class="player2">
+            <p class="name">Player 2: <span class="score">0</span></p>
+        </div>
+    </header>
+    <main>
+        <div class="board"></div>
+    </main>
+</div>
+
+    <script id="template-board" type="text/x-handlebars-template">
+        {{#each matrix}}
+        <div class="row">
+            {{#each this}}
+            <div class="{{#if_eq this '.'}}empty{{/if_eq}} 
+                {{#if_eq this 'c'}}coin{{/if_eq}} 
+                {{#if_eq this '1'}}player1{{/if_eq}} 
+                {{#if_eq this '2'}}player2{{/if_eq}} 
+                {{#if_eq this 'w'}}empty{{/if_eq}}">
+                {{this}}
+            </div>
+            {{/each}}
+        </div>
+        {{/each}}
+    </script>
+    
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="./Matrix.js"></script>
+    <script src="./GoldRush.js"></script>
+    <script src="./Renderer.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

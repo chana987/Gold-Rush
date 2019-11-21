@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: auto;
+    margin-top: 8px;
+    padding: 4px;
+    width: 95vw;
+    height: 95vh;
+    background: cadetblue;
+}
+
+header {
+    margin:auto;
+    height: 80px;
+    background: rgb(168, 218, 219);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.board {
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr);
+}
