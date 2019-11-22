@@ -13,4 +13,10 @@ const loadPage = function() {
     goldRush.loadBoard(5)
     renderer.renderBoard(goldRush.matrix)
 }
+
+$(document).keydown(function(event) {
+    console.log('hi')
+    goldRush.movePlayer(event)
+})
+
 loadPage()

@@ -4,25 +4,73 @@
     padding: 0;
 }
 
+body {
+    color: rgb(5, 42, 71);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
 .container {
     margin: auto;
     margin-top: 8px;
-    padding: 4px;
-    width: 95vw;
-    height: 95vh;
+    padding: 8px;
+    width: 98vw;
+    height: 98vh;
     background: cadetblue;
 }
 
 header {
-    margin:auto;
+    margin: auto;
+    margin-bottom: 8px;
     height: 80px;
     background: rgb(168, 218, 219);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    align-items: center;
 }
 
 .board {
-    display: grid; 
-    grid-template-columns: repeat(5, 1fr);
+    height: 84vh;
+    display: flex; 
+    align-content: center;
+    flex-direction: column;
+    border: 2px solid rgb(5, 42, 71);
+}
+
+.row {
+    display: flex;
+    flex: 1 1 200px;
+    
+}
+
+.square {
+    flex: 1 1 200px;
+    border: 1px solid rgb(5, 42, 71);
+}
+
+.empty {
+    
+}
+
+.symbol {
+    margin: 15% auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.coin {
+    background: goldenrod;
+}
+
+.pawn1 {
+    background: rgb(124, 34, 34);
+}
+
+.pawn2 {
+    background: rgb(60, 60, 129);
+}
+
+.wall {
+    background: rgb(5, 42, 71);
 }

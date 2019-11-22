@@ -14,7 +14,10 @@
         <div class="player1">
             <p class="name">Player 1: <span class="score">0</span></p>
         </div>
-        <h3 class="heading">Gold Rush</h3>
+        <div>
+            <h3 class="heading">Gold Rush</h3>
+            <input type="text" placeholder="Choose board size">
+        </div>
         <div class="player2">
             <p class="name">Player 2: <span class="score">0</span></p>
         </div>
@@ -28,23 +31,19 @@
         {{#each matrix}}
         <div class="row">
             {{#each this}}
-            <div class="{{#if_eq this '.'}}empty{{/if_eq}} 
-                {{#if_eq this 'c'}}coin{{/if_eq}} 
-                {{#if_eq this '1'}}player1{{/if_eq}} 
-                {{#if_eq this '2'}}player2{{/if_eq}} 
-                {{#if_eq this 'w'}}empty{{/if_eq}}">
-                {{this}}
+            <div class="square">
+                <div class="symbol {{#if_eq this '.'}}empty{{/if_eq}} {{#if_eq this 'c'}}coin{{/if_eq}} {{#if_eq this '1'}}pawn1{{/if_eq}} {{#if_eq this '2'}}pawn2{{/if_eq}} {{#if_eq this 'w'}}wall{{/if_eq}}">{{this}}</div>
             </div>
             {{/each}}
         </div>
         {{/each}}
     </script>
     
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="../node_modules/handlebars/dist/handlebars.js"></script>
-    <script src="./Matrix.js"></script>
-    <script src="./GoldRush.js"></script>
-    <script src="./Renderer.js"></script>
-    <script src="./main.js"></script>
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="handlebars/dist/handlebars.js"></script>
+    <script src="Matrix.js"></script>
+    <script src="GoldRush.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
