@@ -1,3 +1,5 @@
+// const Matrix = require('./Matrix')
+
 class GoldRush extends Matrix {
     constructor() {
         super()
@@ -47,45 +49,43 @@ class GoldRush extends Matrix {
         this.alter(size - 1, size - 1, 2)
     }
 
-    findWhichPlayer(key, oldPlace, newPlace) {
-        let player
-        if (this.player1.directions[key]) {
-            player = this.player1    
-        } else if (this.player2.directions[key]) {
-            player = this.player2
-        }
-        oldPlace.push(player.rowNum, player.colNum)
-        this.getDirection(player.directions[key], oldPlace, newPlace)
-        return player
-    }
-    getDirection(key, oldPlace, newPlace) {
+    getDirection(key, rowNum, colNum) {
         if (key === 'up') {
-            newPlace.push(oldPlace[0] - 1, oldPlace[1])
+            rowNum -= rowNum
         } else if (key === 'down') {
-            newPlace.push(oldPlace[0] + 1, oldPlace[1])
+            rowNum += rowNum
         } else if (key === 'left') {
-            newPlace.push(oldPlace[0], oldPlace[1] - 1)
+            colNum -= colNum
         } else if (key === 'right') {
-            newPlace.push(oldPlace[0], oldPlace[1] + 1)
+            colNum += colNum
         }
     }
-    updateBoard(oldPlace, newPlace, player) {
-        let square = this.matrix[newPlace[0]][newPlace[1]]
-        if (square && square !== 'w') {
-            if (square === 'c') {
-                player.score += 10
-            }
-            this.alter(oldPlace[0], oldPlace[1], '.')
-            this.alter(newPlace[0], newPlace[1], player.id)
-            player.rowNum = newPlace[0]
-            player.colNum = newPlace[1]
+    updateBoard(rowNum, colNum, player) {
+        if (rowNum < 0 || rowNum >= this.matrix.length || colNum < 0 || colNum >= this.matrix[0].length || this.matrix[rowNum][colNum] == '1' || this.matrix[rowNum][colNum] == '2' || this.matrix[rowNum][colNum] === 'w') {
+            return
         }
+        if (this.matrix[rowNum][colNum] === 'c') {
+            player.score += 10
+        }
+        this.alter(oldPlace[0], oldPlace[1], '.')
+        this.alter(rowNum, colNum, player.id)
+        player.rowNum = rowNum
+        player.colNum = colNum
     }
     movePlayer(key) {
-        let oldPlace = []
-        let newPlace = []
-        let player = this.findWhichPlayer(key, oldPlace, newPlace)
-        this.updateBoard(oldPlace, newPlace, player)
+        let rowNum
+        let colNum
+        if (this.player1.directions[key]) {
+            rowNum = this.player1.rowNum
+            colNum = this.player1.colNum
+            this.getDirection(this.player1.directions[key], rowNum, colNum)
+            this.updateBoard(rowNum, colNum, this.player1)
+        } else if (this.player2.directions[key]) {
+            rowNum = this.player2.rowNum
+            colNum = this.player2.colNum
+            this.getDirection(this.player2.directions[key], rowNum, colNum)
+            this.updateBoard(rowNum, colNum, this.player2)
+        } else { return }   
     }
 }
 
