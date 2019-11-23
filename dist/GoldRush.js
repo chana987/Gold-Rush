@@ -5,6 +5,7 @@ class GoldRush extends Matrix {
         super()
         this.matrix = []
         this.coinCount
+        this.winningScore
         this.player1 = {
             id: 1, 
             rowNum: 0, 
@@ -15,7 +16,8 @@ class GoldRush extends Matrix {
                 65: 'left',
                 68: 'right'
             },
-            score: 0
+            score: 0,
+            winner: false
         }
         this.player2 = {
             id: 2, 
@@ -27,7 +29,8 @@ class GoldRush extends Matrix {
                 74: 'left',
                 76: 'right'
             },
-            score: 0
+            score: 0,
+            winner: false
         }
     }
     makeRandomWalls(size) {
@@ -55,6 +58,7 @@ class GoldRush extends Matrix {
         this.player2.colNum = size - 1
         this.alter(0, 0, 1)
         this.alter(size - 1, size - 1, 2)
+        this.winningScore = size * 10
     } 
 
     updateBoard(key, player) {
@@ -83,6 +87,12 @@ class GoldRush extends Matrix {
         this.alter(newRowNum, newColNum, player.id)
         player.rowNum = newRowNum
         player.colNum = newColNum
+        this.checkIfWon(player)
+    }
+    checkIfWon(player) {
+        if (player.score === this.winningScore) {
+            player.winner = true
+        }
     }
     movePlayer(key) {
         if (this.player1.directions[key]) {
@@ -90,6 +100,15 @@ class GoldRush extends Matrix {
         } else if (this.player2.directions[key]) {
             this.updateBoard(key, this.player2)
         } else { return }   
+    }
+    resetGame(size) {
+        this.player1.score = 0
+        this.player1.rowNum = 0
+        this.player1.colNum = 0
+        this.player1.winner = false
+        this.player2.score = 0
+        this.player2.winner = false
+        this.loadBoard(size)
     }
 }
 
