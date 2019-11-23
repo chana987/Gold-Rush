@@ -15,8 +15,8 @@ const loadPage = function() {
 }
 
 $(document).keydown(function(event) {
-    console.log('hi')
-    goldRush.movePlayer(event)
+    goldRush.movePlayer(event.which)
+    renderer.renderBoard(goldRush.matrix)
 })
 
 loadPage()

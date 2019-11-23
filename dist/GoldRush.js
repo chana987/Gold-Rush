@@ -1,7 +1,10 @@
+// const Matrix = require('./Matrix')
+
 class GoldRush extends Matrix {
     constructor() {
         super()
         this.matrix = []
+        this.coinCount
         this.player1 = {
             id: 1, 
             rowNum: 0, 
@@ -27,6 +30,11 @@ class GoldRush extends Matrix {
             score: 0
         }
     }
+    makeRandomWalls(size) {
+        for (let i = 0; i < Math.round(Math.random() * 5) + 10; i++) {
+            this.alter(Math.round(Math.random() * size), Math.round(Math.random() * size), 'w')
+        }
+    }
     makeRandomCoins(size) {
         for (let i = 0; i < Math.round(Math.random() * 20) + 10; i++) {
             this.alter(Math.round(Math.random() * size), Math.round(Math.random() * size), 'c')
@@ -40,52 +48,47 @@ class GoldRush extends Matrix {
             }
             this.matrix.push(row)
         }
+        this.makeRandomWalls(size - 1)
         this.makeRandomCoins(size - 1)
         this.player2.rowNum = size - 1
         this.player2.colNum = size - 1
         this.alter(0, 0, 1)
         this.alter(size - 1, size - 1, 2)
-    }
+    } 
 
-    findWhichPlayer(key, oldPlace, newPlace) {
-        let player
-        if (this.player1.directions[key]) {
-            player = this.player1    
-        } else if (this.player2.directions[key]) {
-            player = this.player2
+    updateBoard(key, player) {
+        let newRowNum
+        let newColNum
+        if (player.directions[key] === 'up') {
+            newRowNum = player.rowNum -1
+            newColNum = player.colNum
+        } else if (player.directions[key] === 'down') {
+            newRowNum = player.rowNum + 1
+            newColNum = player.colNum
+        } else if (player.directions[key] === 'left') {
+            newRowNum = player.rowNum
+            newColNum = player.colNum - 1
+        } else if (player.directions[key] === 'right') {
+            newRowNum = player.rowNum 
+            newColNum = player.colNum + 1
         }
-        oldPlace.push(player.rowNum, player.colNum)
-        this.getDirection(player.directions[key], oldPlace, newPlace)
-        return player
-    }
-    getDirection(key, oldPlace, newPlace) {
-        if (key === 'up') {
-            newPlace.push(oldPlace[0] - 1, oldPlace[1])
-        } else if (key === 'down') {
-            newPlace.push(oldPlace[0] + 1, oldPlace[1])
-        } else if (key === 'left') {
-            newPlace.push(oldPlace[0], oldPlace[1] - 1)
-        } else if (key === 'right') {
-            newPlace.push(oldPlace[0], oldPlace[1] + 1)
+        if (newRowNum < 0 || newRowNum >= this.matrix.length || newColNum < 0 || newColNum >= this.matrix[0].length || this.matrix[newRowNum][newColNum] == '1' || this.matrix[newRowNum][newColNum] == '2' || this.matrix[newRowNum][newColNum] === 'w') {
+            return
         }
-    }
-    updateBoard(oldPlace, newPlace, player) {
-        let square = this.matrix[newPlace[0]][newPlace[1]]
-        if (square && square !== 'w') {
-            if (square === 'c') {
-                player.score += 10
-            }
-            this.alter(oldPlace[0], oldPlace[1], '.')
-            this.alter(newPlace[0], newPlace[1], player.id)
-            player.rowNum = newPlace[0]
-            player.colNum = newPlace[1]
+        if (this.matrix[newRowNum][newColNum] === 'c') {
+            player.score += 10
         }
+        this.alter(player.rowNum, player.colNum, '.')
+        this.alter(newRowNum, newColNum, player.id)
+        player.rowNum = newRowNum
+        player.colNum = newColNum
     }
     movePlayer(key) {
-        let oldPlace = []
-        let newPlace = []
-        let player = this.findWhichPlayer(key, oldPlace, newPlace)
-        this.updateBoard(oldPlace, newPlace, player)
+        if (this.player1.directions[key]) {
+            this.updateBoard(key, this.player1)
+        } else if (this.player2.directions[key]) {
+            this.updateBoard(key, this.player2)
+        } else { return }   
     }
 }
 
