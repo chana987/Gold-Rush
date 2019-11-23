@@ -17,6 +17,7 @@ const loadPage = function() {
 $(document).keydown(function(event) {
     goldRush.movePlayer(event.which)
     renderer.renderBoard(goldRush.matrix)
+    renderer.renderScores(goldRush.player1, goldRush.player2)
 })
 
 loadPage()

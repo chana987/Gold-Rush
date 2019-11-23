@@ -6,4 +6,8 @@ class Renderer {
         const newHTML = template({matrix})
         $(".board").append(newHTML)
     }    
+    renderScores(player1, player2) {
+        $(".score1").html(player1.score)
+        $(".score2").html(player2.score)
+    }
 }
