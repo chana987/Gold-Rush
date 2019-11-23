@@ -9,10 +9,15 @@ Handlebars.registerHelper('if_eq', function(a, b, opts) {
     }
 })
 
-const loadPage = function() {
-    goldRush.loadBoard(5)
+const loadPage = function(size) {
+    goldRush.loadBoard(size)
     renderer.renderBoard(goldRush.matrix)
 }
+
+$(".new-game").on("click", function() {
+    let size = $("#size").val()
+    loadPage(size)
+})
 
 $(document).keydown(function(event) {
     goldRush.movePlayer(event.which)
@@ -20,4 +25,4 @@ $(document).keydown(function(event) {
     renderer.renderScores(goldRush.player1, goldRush.player2)
 })
 
-loadPage()
+loadPage(10)

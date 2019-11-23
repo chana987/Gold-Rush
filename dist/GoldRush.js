@@ -31,16 +31,17 @@ class GoldRush extends Matrix {
         }
     }
     makeRandomWalls(size) {
-        for (let i = 0; i < Math.round(Math.random() * 5) + 10; i++) {
+        for (let i = 0; i < Math.round(Math.random() * size) + (size * 2); i++) {
             this.alter(Math.round(Math.random() * size), Math.round(Math.random() * size), 'w')
         }
     }
     makeRandomCoins(size) {
-        for (let i = 0; i < Math.round(Math.random() * 20) + 10; i++) {
+        for (let i = 0; i < Math.round(Math.random() * (size * 4)) + (size * 2); i++) {
             this.alter(Math.round(Math.random() * size), Math.round(Math.random() * size), 'c')
         }
     }
     loadBoard(size) {
+        this.matrix = []
         for (let i = 0; i < size; i++) {
             let row = []
             for (let j = 0; j < size; j++) {
