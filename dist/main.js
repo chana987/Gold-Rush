@@ -1,7 +1,6 @@
 const renderer = new Renderer
 const goldRush = new GoldRush
 
-let size 
 
 Handlebars.registerHelper('if_eq', function(a, b, opts) {
     if (a == b) {
@@ -18,7 +17,7 @@ const loadPage = function(size) {
 }
 
 $(".new-game").on("click", function() {
-    size = $("#size").val()
+    let size = $("#size").val()
     loadPage(size)
 })
 
@@ -35,6 +34,7 @@ $(document).keydown(function(event) {
     if (winner) {
         let playAgain = confirm(`Player ${winner} wins! Want to play again?`)
         if (playAgain) {
+            let size = $("#size").val()
             goldRush.resetGame(size)
             $(".winning-score").html(goldRush.winningScore)
             renderer.renderBoard(goldRush.matrix)

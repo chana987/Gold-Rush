@@ -83,11 +83,11 @@ class GoldRush extends Matrix {
         if (this.matrix[newRowNum][newColNum] === 'c') {
             player.score += 10
         }
-        this.checkIfWon(player)
         this.alter(player.rowNum, player.colNum, '.')
         this.alter(newRowNum, newColNum, player.id)
         player.rowNum = newRowNum
         player.colNum = newColNum
+        this.checkIfWon(player)
     }
     checkIfWon(player) {
         if (player.score === this.winningScore) {
