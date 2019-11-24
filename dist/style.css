@@ -6,15 +6,15 @@
 
 body {
     color: rgb(5, 42, 71);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .container {
     margin: auto;
     margin-top: 8px;
     padding: 8px;
-    width: 98vw;
-    height: 98vh;
+    width: 98%;
+    height: 98%;
     background: cadetblue;
 }
 
@@ -31,17 +31,15 @@ header {
 }
 
 .board {
-    height: 84vh;
-    display: flex; 
-    align-content: center;
-    flex-direction: column;
+    height: 85vh;
+    display: grid; 
     border: 2px solid rgb(5, 42, 71);
+    background: rgb(168, 218, 219);
 }
 
 .row {
     display: flex;
     flex: 1 1 200px;
-    
 }
 
 .square {
@@ -49,27 +47,24 @@ header {
     border: 1px solid rgb(5, 42, 71);
 }
 
-.empty {
-    
-}
-
 .symbol {
-    margin: 15% auto;
-    width: 50px;
+    margin: 3% auto;
     height: 50px;
+    width: 50px;
     border-radius: 50%;
 }
 
 .coin {
     background: goldenrod;
+    border: 2px solid rgba(161, 120, 5, 0.801);
 }
 
 .pawn1 {
-    background: rgb(124, 34, 34);
+    background: rgb(209, 86, 86);
 }
 
 .pawn2 {
-    background: rgb(60, 60, 129);
+    background: rgb(68, 180, 92);
 }
 
 .wall {

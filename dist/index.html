@@ -12,17 +12,19 @@
 <div class="container">
     <header>
         <div class="player1">
-            <p class="name">Player 1: <span class="score1">0</span></p>
+            <p class="name">Player 1</p>
+            <p>Score: <span class="score1">0</span></p>
         </div>
         <div>
             <h3 class="heading">Gold Rush</h3>
             <label for="size">Board size: </label>
-            <input type="number" value="5" min="5" max="20" id="size">
+            <input type="number" value="5" min="5" max="10" id="size">
             <button type="submit" class="new-game">Go!</button>
-            <p class="winning-score"></p>
+            <p>Winning score: <span class="winning-score"></span></p>
         </div>
         <div class="player2">
-            <p class="name">Player 2: <span class="score2">0</span></p>
+            <p class="name">Player 2</p>
+            <p>Score: <span class="score2">0</span></p>
         </div>
     </header>
     <main>
@@ -34,8 +36,8 @@
         {{#each matrix}}
         <div class="row">
             {{#each this}}
-            <div class="square">
-                <div class="symbol {{#if_eq this '.'}}empty{{/if_eq}} {{#if_eq this 'c'}}coin{{/if_eq}} {{#if_eq this '1'}}pawn1{{/if_eq}} {{#if_eq this '2'}}pawn2{{/if_eq}} {{#if_eq this 'w'}}wall{{/if_eq}}">{{this}}</div>
+            <div class="square {{#if_eq this 'w'}}wall{{/if_eq}}">
+                <div class="symbol {{#if_eq this 'c'}}coin{{/if_eq}} {{#if_eq this '1'}}pawn1{{/if_eq}} {{#if_eq this '2'}}pawn2{{/if_eq}}"></div>
             </div>
             {{/each}}
         </div>

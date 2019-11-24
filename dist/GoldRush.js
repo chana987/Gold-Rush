@@ -1,5 +1,3 @@
-// const Matrix = require('./Matrix')
-
 class GoldRush extends Matrix {
     constructor() {
         super()
@@ -65,7 +63,7 @@ class GoldRush extends Matrix {
         let newRowNum
         let newColNum
         if (player.directions[key] === 'up') {
-            newRowNum = player.rowNum -1
+            newRowNum = player.rowNum - 1
             newColNum = player.colNum
         } else if (player.directions[key] === 'down') {
             newRowNum = player.rowNum + 1
@@ -111,10 +109,3 @@ class GoldRush extends Matrix {
         this.loadBoard(size)
     }
 }
-
-// let rush = new GoldRush()
-// rush.loadBoard(5)
-// rush.movePlayer(74)
-// rush.movePlayer(73)
-// rush.print()
-// console.log(rush.player2)

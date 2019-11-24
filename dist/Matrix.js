@@ -58,5 +58,3 @@ class Matrix {
         return {x: colNum, y: rowNum}
     }
 }
-
-// module.exports = Matrix
