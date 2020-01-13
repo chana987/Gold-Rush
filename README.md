@@ -13,8 +13,10 @@ npm i
 
 ## `node server.js`
 
-Open localhost:3000
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+![Screenshot](/screenshot.png?raw=true)
 
 ## Roadmap
 
-Prevent players or coins being trapped between walls, polish winning system
+Prevent players or coins being trapped between walls, polish winning system.
